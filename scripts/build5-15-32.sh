@@ -97,7 +97,7 @@ for i in u-boot-imx linux-imx meta-vb-imx8mp; do
 	fi
 	popd
     else
-	git clone -b $BRANCH git@github.com:voxelbotics/${i}.git || exit $?
+	git clone -b $BRANCH git@github.com:daxlar/${i}.git || exit $?
     fi
     pushd $i
     if [ $i = "meta-vb-imx8mp" ]; then
@@ -126,8 +126,8 @@ RELEASE_VER="${SETTAG}-$(date +%m%d%H%M)-${yocto_hash}"
 
 DISTRO=${DISTRO} MACHINE=imx8mpnavq EULA=yes BUILD_DIR=builddir source ./${SETUP} || exit $?
 
-sed -i 's/^DL_DIR.*$/DL_DIR\ \?=\ \"\/home\/cache\/CACHE\/5.15.32\/downloads\/\"/' conf/local.conf || exit $?
-echo "SSTATE_DIR = \"/home/cache/CACHE/5.15.32/sstate-cache\"" >> conf/local.conf || exit $?
+sed -i 's/^DL_DIR.*$/DL_DIR\ \?=\ \"\/home\/allzhang\/projects\/hovergames\/cache\/CACHE\/5.15.32\/downloads\/\"/' conf/local.conf || exit $?
+echo "SSTATE_DIR = \"/home/allzhang/projects/hovergames/cache/CACHE/5.15.32/sstate-cache\"" >> conf/local.conf || exit $?
 echo "IMAGE_INSTALL:append = \" navq-files \"" >> conf/local.conf || exit $?
 echo "BBMASK += \"$BBMASK\"" >> conf/local.conf || exit $?
 sed -i -e "s/BB_DEFAULT_UMASK =/BB_DEFAULT_UMASK ?=/" ../sources/poky/meta/conf/bitbake.conf
