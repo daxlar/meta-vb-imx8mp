@@ -35,7 +35,7 @@ if [ x"$BUILD_DESKTOP" = "xyes" ]; then
     BUILDDIR="build-desktop"
     BBMASK=""
 else
-    MANIFEST="imx-5.15.32-1.0.0.xml"
+    MANIFEST="imx-5.15.32-2.0.0.xml"
     DISTRO="fsl-imx-xwayland"
     IMGNAME="imx-image-full"
     BUILDRECIPES="imx-image-full navq-install"
