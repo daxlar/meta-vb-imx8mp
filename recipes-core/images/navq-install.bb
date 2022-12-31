@@ -25,6 +25,7 @@ PACKAGE_INSTALL = " \
 		navq-files \
 		navq-files-wpa \
 		usb-gadgets-uuc1 \
+		usb-gadgets-uuc2 \
 		u-boot-fw-utils \
 		u-boot-default-env \
 		${ROOTFS_BOOTSTRAP_INSTALL}"
@@ -71,7 +72,7 @@ FB: download -f imx8mp-navq.dtb
 FB: ucmd setenv fastboot_buffer \$initrd_addr
 FB: download -f ${IMAGE_BASENAME}.uImage
 FB: ucmd run mmcargs
-FB: ucmd setenv bootargs $bootargs quiet=quiet mfgboot
+FB: ucmd setenv bootargs $bootargs quiet=quiet mfgboot initcall_blacklist=tcpci_i2c_driver_init
 FB: acmd booti \$loadaddr \$initrd_addr \$fdt_addr
 
 # upload and install boot and rootfs images
