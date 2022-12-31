@@ -123,7 +123,7 @@ rm -f meta-vb-imx8mp && ln -s ../tmp/meta-vb-imx8mp . || exit $?
 git clone -b kirkstone https://github.com/sbabic/meta-swupdate.git
 # add meta-ros here for non-desktop builds
 if [ x"$BUILD_DESKTOP" = "xno" ]; then
-	git clone https://github.com/daxlar/meta-ros.git
+	#git clone https://github.com/daxlar/meta-ros.git
 fi
 popd # sources
 RELEASE_VER="${SETTAG}-$(date +%m%d%H%M)-${yocto_hash}"
@@ -144,9 +144,9 @@ sed -i -e "s/PACKAGE_CLASSES = \"package_deb\"/PACKAGE_CLASSES ?= \"package_deb\
 
 # add meta-ros to bblayers for non-desktop builds
 if [ x"$BUILD_DESKTOP" = "xno" ]; then
-	echo BBLAYERS += \"\${BSPDIR}/sources/meta-ros/meta-ros-common\" >> conf/bblayers.conf || exit $?
-	echo BBLAYERS += \"\${BSPDIR}/sources/meta-ros/meta-ros2\" >> conf/bblayers.conf || exit $?
-	echo BBLAYERS += \"\${BSPDIR}/sources/meta-ros/meta-ros2-foxy\" >> conf/bblayers.conf || exit $?
+	#echo BBLAYERS += \"\${BSPDIR}/sources/meta-ros/meta-ros-common\" >> conf/bblayers.conf || exit $?
+	#echo BBLAYERS += \"\${BSPDIR}/sources/meta-ros/meta-ros2\" >> conf/bblayers.conf || exit $?
+	#echo BBLAYERS += \"\${BSPDIR}/sources/meta-ros/meta-ros2-foxy\" >> conf/bblayers.conf || exit $?
 fi
 echo BBLAYERS += \"\${BSPDIR}/sources/meta-vb-imx8mp\" >> conf/bblayers.conf || exit $?
 echo BBLAYERS += \"\${BSPDIR}/sources/meta-swupdate\" >> conf/bblayers.conf || exit $?
