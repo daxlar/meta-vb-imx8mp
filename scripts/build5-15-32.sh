@@ -144,7 +144,7 @@ sed -i -e "s/PACKAGE_CLASSES = \"package_deb\"/PACKAGE_CLASSES ?= \"package_deb\
 
 # add meta-ros to bblayers for non-desktop builds
 if [ x"$BUILD_DESKTOP" = "xno" ]; then
-	echo BBLAYERS += \"\${BSPDIR}/sources/meta-ros/meta-ros-foxy\" >> conf/bblayers.conf || exit $?
+	echo BBLAYERS += \"\${BSPDIR}/sources/meta-ros/meta-ros2-foxy\" >> conf/bblayers.conf || exit $?
 fi
 echo BBLAYERS += \"\${BSPDIR}/sources/meta-vb-imx8mp\" >> conf/bblayers.conf || exit $?
 echo BBLAYERS += \"\${BSPDIR}/sources/meta-swupdate\" >> conf/bblayers.conf || exit $?
