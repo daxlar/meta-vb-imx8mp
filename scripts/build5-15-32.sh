@@ -121,10 +121,18 @@ popd # tmp
 pushd sources
 rm -f meta-vb-imx8mp && ln -s ../tmp/meta-vb-imx8mp . || exit $?
 git clone -b kirkstone https://github.com/sbabic/meta-swupdate.git
+# add meta-ros here for non-desktop builds
+if [ x"$BUILD_DESKTOP" = "xno" ]; then
+	git clone https://github.com/ros/meta-ros.git
+fi
 popd # sources
 RELEASE_VER="${SETTAG}-$(date +%m%d%H%M)-${yocto_hash}"
 
 DISTRO=${DISTRO} MACHINE=imx8mpnavq EULA=yes BUILD_DIR=builddir source ./${SETUP} || exit $?
+
+# set number of build threads
+echo "BB_NUMBER_THREADS = \"11\"" >> conf/local.conf || exit $?
+echo "PARALLEL_MAKE = \"-j 11 \"" >> conf/local.conf || exit $?
 
 sed -i 's/^DL_DIR.*$/DL_DIR\ \?=\ \"\${PWD}\/cache\/CACHE\/5.15.32\/downloads\/\"/' conf/local.conf || exit $?
 echo "SSTATE_DIR = \"${PWD}/cache/CACHE/5.15.32/sstate-cache\"" >> conf/local.conf || exit $?
@@ -134,6 +142,10 @@ sed -i -e "s/BB_DEFAULT_UMASK =/BB_DEFAULT_UMASK ?=/" ../sources/poky/meta/conf/
 sed -i -e "s/PACKAGE_CLASSES = \"package_rpm\"/PACKAGE_CLASSES ?= \"package_rpm\"/" conf/local.conf
 sed -i -e "s/PACKAGE_CLASSES = \"package_deb\"/PACKAGE_CLASSES ?= \"package_deb\"/" conf/local.conf
 
+# add meta-ros to bblayers for non-desktop builds
+if [ x"$BUILD_DESKTOP" = "xno" ]; then
+	echo BBLAYERS += \"\${BSPDIR}/sources/meta-ros/meta-ros-foxy\" >> conf/bblayers.conf || exit $?
+fi
 echo BBLAYERS += \"\${BSPDIR}/sources/meta-vb-imx8mp\" >> conf/bblayers.conf || exit $?
 echo BBLAYERS += \"\${BSPDIR}/sources/meta-swupdate\" >> conf/bblayers.conf || exit $?
 
