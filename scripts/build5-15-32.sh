@@ -123,7 +123,7 @@ rm -f meta-vb-imx8mp && ln -s ../tmp/meta-vb-imx8mp . || exit $?
 git clone -b kirkstone https://github.com/sbabic/meta-swupdate.git
 # add meta-ros here for non-desktop builds
 if [ x"$BUILD_DESKTOP" = "xno" ]; then
-	git clone https://github.com/moto-timo/meta-ros.git
+	git clone https://github.com/daxlar/meta-ros.git
 fi
 popd # sources
 RELEASE_VER="${SETTAG}-$(date +%m%d%H%M)-${yocto_hash}"
