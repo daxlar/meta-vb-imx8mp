@@ -148,6 +148,10 @@ if [ x"$BUILD_DESKTOP" = "xno" ]; then
 	echo BBLAYERS += \"\${BSPDIR}/sources/meta-ros/meta-ros2\" >> conf/bblayers.conf || exit $?
 	echo BBLAYERS += \"\${BSPDIR}/sources/meta-ros/meta-ros2-foxy\" >> conf/bblayers.conf || exit $?
 fi
+
+if [ x"$BUILD_DESKTOP" = "xyes" ]; then
+	echo "SSTATE_DIR = \"root:root:/bin/bash\"" >> conf/local.conf || exit $?
+fi
 echo BBLAYERS += \"\${BSPDIR}/sources/meta-vb-imx8mp\" >> conf/bblayers.conf || exit $?
 echo BBLAYERS += \"\${BSPDIR}/sources/meta-swupdate\" >> conf/bblayers.conf || exit $?
 
