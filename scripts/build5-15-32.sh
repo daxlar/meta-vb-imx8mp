@@ -150,7 +150,7 @@ if [ x"$BUILD_DESKTOP" = "xno" ]; then
 fi
 
 if [ x"$BUILD_DESKTOP" = "xyes" ]; then
-	echo "SSTATE_DIR = \"root:root:/bin/bash\"" >> conf/local.conf || exit $?
+	echo "APTGET_ADD_USERS = \"root:root:/bin/bash\"" >> conf/local.conf || exit $?
 fi
 echo BBLAYERS += \"\${BSPDIR}/sources/meta-vb-imx8mp\" >> conf/bblayers.conf || exit $?
 echo BBLAYERS += \"\${BSPDIR}/sources/meta-swupdate\" >> conf/bblayers.conf || exit $?
