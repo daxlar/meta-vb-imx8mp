@@ -15,6 +15,11 @@ IMAGE_INSTALL:append += " \
                          navq-files-wpa \
                         "
 
+IMAGE_INSTALL:append = " \
+    ros-core \
+    demo-nodes-cpp \
+"
+
 APTGET_EXTRA_PACKAGES += " \
 		       v4l-utils \
 		       iw	 \
